@@ -1,6 +1,6 @@
 {
-  "name": "vi_package_template",
-  "version": "1.0.2",
+  "name": "@theviproj/hashpic",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,8 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@types/node": "^20.6.0"
+    "@types/node": "^20.6.0",
+    "js-sha256": "^0.11.0"
   },
   "typesVersions": {
     ">=4.2": {
@@ -33,11 +34,11 @@
   },
   "types": "./index.d.ts",
   "exports": {
-    "./*": {
+    ".": {
       "types": "./_types/*.d.ts",
       "require": "./_cjs/*.js",
       "import": "./_esm/*.js",
-      "default": "./_esm/*.js"
+      "default": "./src/main.ts"
     }
   }
 }
