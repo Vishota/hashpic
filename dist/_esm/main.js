@@ -1,7 +1,5 @@
-import { sha256 } from "js-sha256"
-
-export default getHashpicSvg
-
+import { sha256 } from "js-sha256";
+export default getHashpicSvg;
 const blankSvg = `<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#clip0_12_190)">
 <rect width="300" height="300" :fill="colors[0]"/>
@@ -28,24 +26,23 @@ const blankSvg = `<svg width="300" height="300" viewBox="0 0 300 300" xmlns="htt
 <path d="M-3.8147e-06 250L-50 300L50 300L-3.8147e-06 250Z" :fill="colors[13]"/>
 <path d="M300 250L250 300L350 300L300 250Z" :fill="colors[13]"/>
 </g>
-</svg>`
-
-function makeColorsArray(target: string) {
-	const groups = sha256.create().update(target).hex().match(/.{1,6}/g)
-    const leftBytes = groups?.pop()
-    if(!groups || !leftBytes) throw 'Cannot get groups from word ' + target
-    const colors = groups.map((c:any) => '#' + c)
-    const shape = leftBytes.split('').map((x:any) => Number('0x' + x))
-
-	if(colors.length < 14) shape.reduce((a:any, b:any, i:any) => {
-		const pos = a + b
-		colors.splice(pos % colors.length, 0, colors[0])
-		return pos
-	}, 0);
-	return colors
+</svg>`;
+function makeColorsArray(target) {
+    const groups = sha256.create().update(target).hex().match(/.{1,6}/g);
+    const leftBytes = groups === null || groups === void 0 ? void 0 : groups.pop();
+    if (!groups || !leftBytes)
+        throw 'Cannot get groups from word ' + target;
+    const colors = groups.map((c) => '#' + c);
+    const shape = leftBytes.split('').map((x) => Number('0x' + x));
+    if (colors.length < 14)
+        shape.reduce((a, b, i) => {
+            const pos = a + b;
+            colors.splice(pos % colors.length, 0, colors[0]);
+            return pos;
+        }, 0);
+    return colors;
 }
-
-function getHashpicSvg(target: string) {
-	const colors = makeColorsArray(target);
-	return blankSvg.replace(/:fill="colors\[(\d+)\]"/g, (match, index) => `fill="${colors[Number(index)]}"`);
+function getHashpicSvg(target) {
+    const colors = makeColorsArray(target);
+    return blankSvg.replace(/:fill="colors\[(\d+)\]"/g, (match, index) => `fill="${colors[Number(index)]}"`);
 }

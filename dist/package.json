@@ -1,7 +1,8 @@
 {
-  "name": "hashpic",
-  "version": "1.0.2",
+  "name": "@theviproj/hashpic",
+  "version": "1.1.0",
   "description": "",
+  "private": false,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,20 +10,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Vishota/package_template.git"
+    "url": "git+https://github.com/Vishota/hashpic.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "vishota",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Vishota/package_template/issues"
+    "url": "https://github.com/Vishota/hashpic/issues"
   },
-  "homepage": "https://github.com/Vishota/package_template#readme",
+  "homepage": "https://github.com/Vishota/hashpic#readme",
   "devDependencies": {
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@types/node": "^20.6.0"
+    "@types/node": "^20.6.0",
+    "js-sha256": "^0.11.0"
   },
   "typesVersions": {
     ">=4.2": {
@@ -38,6 +40,12 @@
       "require": "./_cjs/*.js",
       "import": "./_esm/*.js",
       "default": "./_esm/*.js"
+    },
+    ".": {
+      "types": "./_types/main.d.ts",
+      "require": "./_cjs/main.js",
+      "import": "./_esm/main.js",
+      "default": "./_esm/main.js"
     }
   }
 }
