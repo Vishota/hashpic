@@ -2,8 +2,8 @@ import { sha256 } from "js-sha256"
 
 export default getHashpicSvg
 
-const blankSvg = `<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_12_190)">
+const blankSvg = //`<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+`<g clip-path="url(#clip0_12_190)">
 <rect width="300" height="300" :fill="colors[0]"/>
 <path d="M50 100L100 150H0L50 100Z" :fill="colors[4]"/>
 <path d="M250 100L300 150H200L250 100Z" :fill="colors[4]"/>
@@ -27,8 +27,8 @@ const blankSvg = `<svg width="300" height="300" viewBox="0 0 300 300" xmlns="htt
 <path d="M300 50L250 -8.74228e-06L350 0L300 50Z" :fill="colors[13]"/>
 <path d="M-3.8147e-06 250L-50 300L50 300L-3.8147e-06 250Z" :fill="colors[13]"/>
 <path d="M300 250L250 300L350 300L300 250Z" :fill="colors[13]"/>
-</g>
-</svg>`
+</g>`
+// </svg>`
 
 function makeColorsArray(target: string) {
 	const groups = sha256.create().update(target).hex().match(/.{1,6}/g)
@@ -49,3 +49,5 @@ function getHashpicSvg(target: string) {
 	const colors = makeColorsArray(target);
 	return blankSvg.replace(/:fill="colors\[(\d+)\]"/g, (match, index) => `fill="${colors[Number(index)]}"`);
 }
+
+console.log(getHashpicSvg('vishota'));

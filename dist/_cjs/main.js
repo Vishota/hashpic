@@ -48,3 +48,4 @@ function getHashpicSvg(target) {
     const colors = makeColorsArray(target);
     return blankSvg.replace(/:fill="colors\[(\d+)\]"/g, (match, index) => `fill="${colors[Number(index)]}"`);
 }
+console.log(getHashpicSvg('vishota'));
